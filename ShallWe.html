@@ -1,7 +1,27 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
-    printf("Hello, World!\n");
+    char *database[] = {"apple", "banana", "cherry", "date", "elderberry", "fig", "grape"};
+    int databaseSize = sizeof(database) / sizeof(database[0]);
+
+    char searchQuery[100];
+    printf("Enter search query: ");
+    scanf("%99s", searchQuery); // ユーザーの入力を受け取る
+
+    int found = 0; // 一致する項目が見つかったかどうかを追跡するフラグ
+    for (int i = 0; i < databaseSize; i++) {
+        if (strcmp(database[i], searchQuery) == 0) { // 文字列が一致するかチェック
+            printf("%s found at index %d.\n", searchQuery, i);
+            found = 1;
+            break; // 一致する項目を見つけたらループを抜ける
+        }
+    }
+
+    if (!found) {
+        printf("%s not found in the database.\n", searchQuery);
+    }
+
     return 0;
 }
-  
+        
